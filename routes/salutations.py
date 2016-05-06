@@ -1,9 +1,11 @@
 from initializer import app
 
 @app.route('/hello')
-def hello():
-    return "Hello person"
+@app.route('/hello/<person>')
+def hello(person = 'Stranger'):
+    return "Hello %s" % person
 
 @app.route('/goodbye')
-def goodbye():
-    return "Goodbye person"
+@app.route('/goodbye/<person>')
+def goodbye(person = 'Stranger'):
+    return "Goodbye %s" % person
