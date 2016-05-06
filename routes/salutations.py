@@ -12,5 +12,6 @@ def goodbye(person = 'Stranger'):
     return "Goodbye %s" % person
 
 @app.route('/colorful/hello')
+@app.route('/colorful/hello/<person>')
 def colorful_hello(person = 'Stranger'):
     return render_template('colorful_hello.j2', person=person)
