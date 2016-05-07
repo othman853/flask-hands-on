@@ -34,4 +34,13 @@ After that, specifying the created env into the .python-version will switch to i
 ##### Misc Learnings:
 
  - pyc files can cause magic number error. This is due the python version change. They must be re-compiled
+ 
+## Flask Login
+
+#### What I understood so far
+
+ - Has the `LoginManager` class
+ - Has the `UserMixin` for default auth methods on User model
+ - `@login_manager.user_loader` A decorator of the source from where the users must come from.
+
 
