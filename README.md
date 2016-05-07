@@ -14,3 +14,18 @@ Conclusions:
  - `.python-version` is a file that lives inside each python project and is used to specify which python version is going to be used, allowing `pyenv` to do its work
  - `requirements.txt` is a manifest of dependencies in a python project
  - `pyenv-virtualenv` seems like a great strategy for environment isolation
+
+##### Installing things:
+
+`brew install pyenv` : install pyenv
+
+`brew install virtualenv` : install virtualenv
+
+`brew install pyenv-virtualenv` : install plugin for integrating both 
+
+`pyenv install [PYTHON_VERSION]` : install a specific version of python
+
+`pyenv virtualenv [PYTHON_VERSION] [ENVIRONMENT NAME]` : create a new environment of python with the specified version
+
+After that, specifying the created env into the .python-version will switch to it automatically
+
