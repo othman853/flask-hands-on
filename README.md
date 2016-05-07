@@ -34,6 +34,7 @@ After that, specifying the created env into the .python-version will switch to i
 ##### Misc Learnings:
 
  - pyc files can cause magic number error. This is due the python version change. They must be re-compiled
+ - Flask `request` raises a 400 Bad Request Error when trying to access a field that does not exist on the form dictionary
  
 ## Flask Login
 
