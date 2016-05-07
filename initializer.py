@@ -9,7 +9,7 @@ app.secret_key = 'flask_hands_on_secret_key'
 app.config['SESSION_TYPE'] = 'filesystem'
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login.j2'
+login_manager.login_view = 'get_login'
 
 @login_manager.user_loader
 def login_user_loader(user_id):
@@ -21,3 +21,4 @@ def not_found(error):
 
 from routes.login import *
 from routes.salutations import *
+from routes.deluxe_salutations import *
