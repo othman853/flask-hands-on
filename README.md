@@ -27,5 +27,11 @@ Conclusions:
 
 `pyenv virtualenv [PYTHON_VERSION] [ENVIRONMENT NAME]` : create a new environment of python with the specified version
 
+`pip install -r [REQUIREMENTS_FILE]` : install requirements from requirements file
+
 After that, specifying the created env into the .python-version will switch to it automatically
+
+##### Misc Learnings:
+
+ - pyc files can cause magic number error. This is due the python version change. They must be re-compiled
 
