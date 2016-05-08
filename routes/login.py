@@ -1,7 +1,7 @@
 from initializer import app
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user
-from models.User import User
+from models import User
 
 @app.route('/login', methods=['GET'])
 def get_login():
