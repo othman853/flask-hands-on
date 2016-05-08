@@ -2,12 +2,17 @@
 
 from flask.ext.script import Manager, Server
 from initializer import app
+from initializer import database
 
 manager = Manager(app)
 
 @manager.command
 def run():
     app.run(debug=True)
+
+@manager.command
+def initdb():
+    database.create_all()
 
 
 if __name__ == '__main__':
