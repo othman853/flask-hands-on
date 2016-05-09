@@ -35,9 +35,11 @@ def login():
     username = request.form['name']
     password = request.form['password']
 
-    if username == 'name' and password == 'password':
-        login_user(User(username, password))
-        return render_template('deluxe_hello.j2', person=username)
-    else:
+    user = User.find_by_username(username)
+
+    if user == None or user.password != password:
         flash('Wrong username or password, try again.')
         return render_template('login.j2', operation=LOGIN_OPERATION)
+
+    login_user(user)
+    return render_template('deluxe_hello.j2', person=user.name)
