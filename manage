@@ -7,12 +7,23 @@ from initializer import database
 manager = Manager(app)
 
 @manager.command
-def run():
-    app.run(debug=True)
+@manager.option('-r', '--recreate', dest='recreate', action='store_true')
+@manager.option('-d', '--debug', dest='debug', action='store_true')
+def run(recreate=False, debug=False):
 
-@manager.command
-def initdb():
+    if recreate:
+        recreate_database()
+
+    app.run(debug=debug)
+
+def recreate_database():
+    print('Droping database schema...')
+    database.drop_all()
+
+    print('Creating database schema...')
     database.create_all()
+
+    print('Database schema recreated.')
 
 
 if __name__ == '__main__':
