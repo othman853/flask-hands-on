@@ -1,5 +1,5 @@
 from initializer import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user
 from models import User
 
@@ -16,11 +16,13 @@ def register():
     password = request.form['password']
 
     if User.is_username_taken(username):
-        return render_template('forbidden.j2')
+        flash('This username is already taken')
+        return render_template('login.j2', operation=REGISTER_OPERATION)
 
     user = User(username, password)
     user.save()
 
+    flash('User created successfully, you can try to log into the system now')
     return render_template('login.j2', operation=LOGIN_OPERATION)
 
 
@@ -37,4 +39,5 @@ def login():
         login_user(User(username, password))
         return render_template('deluxe_hello.j2', person=username)
     else:
-        return render_template('forbidden.j2')
+        flash('Wrong username or password, try again.')
+        return render_template('login.j2', operation=LOGIN_OPERATION)
