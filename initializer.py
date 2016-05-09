@@ -19,7 +19,7 @@ database = SQLAlchemy(app)
 
 @login_manager.user_loader
 def login_user_loader(user_id):
-    return User('name', 'password')
+    return database.session.query(User).filter_by(id = user_id).one_or_none()
 
 @app.errorhandler(404)
 def not_found(error):
