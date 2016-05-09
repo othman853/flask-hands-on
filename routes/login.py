@@ -10,20 +10,19 @@ REGISTER_OPERATION = 'register'
 def register():
 
     if request.method == 'GET':
-        return render_template('login.j2', operation=REGISTER_OPERATION)
+        return _render(REGISTER_OPERATION)
 
-    username = request.form['name']
-    password = request.form['password']
+    username, password = _from_form(request.form)
 
     if User.is_username_taken(username):
         flash('This username is already taken')
-        return render_template('login.j2', operation=REGISTER_OPERATION)
+        return _render(REGISTER_OPERATION)
 
     user = User(username, password)
     user.save()
 
     flash('User created successfully, you can try to log into the system now')
-    return render_template('login.j2', operation=LOGIN_OPERATION)
+    return _render(LOGIN_OPERATION)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -32,14 +31,19 @@ def login():
     if request.method == 'GET':
         return render_template('login.j2', operation=LOGIN_OPERATION)
 
-    username = request.form['name']
-    password = request.form['password']
+    username, password = _from_form(request.form)
 
     user = User.find_by_username(username)
 
     if user == None or user.password != password:
         flash('Wrong username or password, try again.')
-        return render_template('login.j2', operation=LOGIN_OPERATION)
+        return _render(LOGIN_OPERATION)
 
     login_user(user)
     return render_template('deluxe_hello.j2', person=user.name)
+
+def _from_form(request_form):
+    return request_form['name'], request_form['password']
+
+def _render(operation):
+    return render_template('login.j2', operation=operation)
