@@ -27,7 +27,6 @@ def not_found(error):
 
 from models import *
 from routes.login import *
-from routes.salutations import *
 from routes.deluxe_salutations import *
 from routes.persist import *
 from routes.list import *
