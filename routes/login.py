@@ -1,16 +1,25 @@
 from initializer import app
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, login_required, logout_user
 from models import User
 
 LOGIN_OPERATION = 'login'
 REGISTER_OPERATION = 'register'
 SALUTATION = 'deluxe_hello'
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out')
+
+    return _redirect(LOGIN_OPERATION)
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 
     if current_user.is_authenticated:
+        flash('To register a new user you must logout first. Do it by hitting /logout')
         return _redirect(SALUTATION)
 
     if request.method == 'GET':
