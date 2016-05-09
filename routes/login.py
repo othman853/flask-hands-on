@@ -1,6 +1,6 @@
 from initializer import app
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_user
+from flask_login import login_user, current_user
 from models import User
 
 LOGIN_OPERATION = 'login'
@@ -27,6 +27,9 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    if current_user.is_authenticated:
+        return render_template('deluxe_hello.j2', person=current_user.name)
 
     if request.method == 'GET':
         return render_template('login.j2', operation=LOGIN_OPERATION)
