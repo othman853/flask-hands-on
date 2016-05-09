@@ -1,28 +1,23 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Listing all records</title>
-  </head>
-  <body>
+{% extends "base.j2" %}
 
-    {% if not records %}
+{% block content %}
 
-      <h1>No records to show</h1>
+  {% if not records %}
 
-    {% else %}
+    <h1>No records to show</h1>
 
-      <h1>Above is the list of all recorded data</h1>
+  {% else %}
 
-      <ul>
-        {% for record in records %}
+    <h1>Above is the list of all recorded data</h1>
 
-          <li> {{record.value}} </li>
+    <ul>
+      {% for record in records %}
 
-        {% endfor %}
-      </ul>
-      
-    {% endif %}
+        <li> {{record.value}} </li>
 
-  </body>
-</html>
+      {% endfor %}
+    </ul>
+
+  {% endif %}
+
+{% endblock %}

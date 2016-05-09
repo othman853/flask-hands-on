@@ -1,32 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title></title>
-  </head>
-  <body>
+{% extends "base.j2" %}
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
+{% block content %}
+  <form action="{{ url_for(operation) }}" method="post">
+    <input type="text" name="name" />
+    <input type="password" name="password" />
 
-        {% for message in messages %}
-          <h1> {{message}} </h1>
-        {% endfor %}
+    {% if next %}
+      <input type="hidden" name="next" value="{{next}}">
+    {% endif %}
 
-      {% endif%}
-    {% endwith %}
+    <input type="submit" value="{{ operation[:1].upper() + operation[1:] }}" />
+</form>
 
-
-    <form action="{{ url_for(operation) }}" method="post">
-        <input type="text" name="name" />
-        <input type="password" name="password" />
-
-        {% if next %}
-          <input type="hidden" name="next" value="{{next}}">
-        {% endif %}
-
-        <input type="submit" value="{{ operation[:1].upper() + operation[1:] }}" />
-    </form>
-
-  </body>
-</html>
+{% endblock %}
