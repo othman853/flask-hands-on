@@ -6,8 +6,8 @@ from flask import render_template
 def persist(simple_data):
 
     model = SimpleModel(simple_data)
-    model.save(simple_data)
+    model.save()
 
-    last = SimpleModel.query.order_by(SimpleModel.id.desc()).first()
-    
+    last = model.query.order_by(model.id.desc()).first()
+
     return render_template('save_result.j2', last=last)

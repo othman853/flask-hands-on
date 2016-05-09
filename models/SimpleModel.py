@@ -10,7 +10,7 @@ class SimpleModel(database.Model):
     def __init__(self, value):
         self.value = value
 
-    def save(self, data):
-        database.session.add(SimpleModel(data))
+    def save(self):
+        database.session.add(self)
         database.session.commit()
         return self
