@@ -3,7 +3,7 @@ from initializer import database
 
 class SimpleModel(database.Model):
 
-    __tablename__= 'simple_model'
+    __tablename__= 'simple_models'
     id = Column(Integer, primary_key=True)
     value = Column(String)
 
