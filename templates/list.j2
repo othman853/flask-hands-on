@@ -6,15 +6,23 @@
   </head>
   <body>
 
-    <h1>Above is the list of all recorded data</h1>
+    {% if not records %}
 
-    <ul>
-      {% for record in records %}
+      <h1>No records to show</h1>
 
-        <li> {{record.value}} </li>
+    {% else %}
 
-      {% endfor %}
-    </ul>
+      <h1>Above is the list of all recorded data</h1>
+
+      <ul>
+        {% for record in records %}
+
+          <li> {{record.value}} </li>
+
+        {% endfor %}
+      </ul>
+      
+    {% endif %}
 
   </body>
 </html>
