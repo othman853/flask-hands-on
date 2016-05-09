@@ -4,12 +4,13 @@ from sqlalchemy import Column, Integer, String
 
 class User(database.Model, UserMixin):
     __tablename__='users'
-    id = Column(Integer, primary_key=True)
+
+    id = Column(Integer, autoincrement=True, primary_key=True)
+
     name = Column(String, unique=True)
     password = Column(String)
 
     def __init__(self, name, password):
-        self.id = 0
         self.name = name
         self.password = password
 
@@ -20,4 +21,8 @@ class User(database.Model, UserMixin):
 
     @staticmethod
     def is_username_taken(username):
-        return database.session.query(User).filter_by(name=username).count() != 0
+        return User.find_by_username(username) != None
+
+    @staticmethod
+    def find_by_username(username):
+        return User.query.filter_by(name=username).one_or_none()
