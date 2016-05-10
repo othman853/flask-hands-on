@@ -5,7 +5,7 @@ from models import User
 
 LOGIN_OPERATION = 'login'
 REGISTER_OPERATION = 'register'
-SALUTATION = 'deluxe_hello'
+SALUTATION = 'hello'
 
 @app.route('/logout')
 @login_required
